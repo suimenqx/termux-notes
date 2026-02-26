@@ -1,0 +1,10 @@
+# Editor
+*.swp
+*.swo
+
+# OS noise
+.DS_Store
+
+# Local temp
+*.tmp
+*.log
