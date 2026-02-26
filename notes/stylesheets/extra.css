@@ -1,0 +1,46 @@
+:root {
+  --md-text-font: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --md-code-font: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+.md-content__inner {
+  max-width: 860px;
+}
+
+.md-typeset {
+  font-size: 0.9rem;
+  line-height: 1.85;
+}
+
+.md-typeset h1 {
+  margin-bottom: 0.8rem;
+}
+
+.md-typeset h2 {
+  margin-top: 1.8rem;
+}
+
+.md-typeset ul li,
+.md-typeset ol li {
+  margin-bottom: 0.45rem;
+}
+
+.md-typeset pre > code {
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 76.1875em) {
+  .md-typeset {
+    font-size: 0.98rem;
+    line-height: 1.95;
+  }
+
+  .md-nav__link {
+    padding-top: 0.42rem;
+    padding-bottom: 0.42rem;
+  }
+
+  .md-content__inner {
+    padding-top: 0.8rem;
+  }
+}

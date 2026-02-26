@@ -7,9 +7,26 @@ repo_name: suimenqx/termux-notes
 theme:
   name: material
   language: zh
+  font:
+    text: Noto Sans SC
+    code: JetBrains Mono
+  palette:
+    - scheme: default
+      primary: teal
+      accent: blue
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - toc.follow
+    - content.code.copy
+    - search.suggest
+    - search.highlight
 
 # Reuse existing notes as the docs source.
 docs_dir: notes
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Home: index.md
@@ -18,5 +35,8 @@ nav:
 
 markdown_extensions:
   - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
   - toc:
       permalink: true
