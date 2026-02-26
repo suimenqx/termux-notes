@@ -14,6 +14,7 @@ docs_dir: notes
 nav:
   - Home: index.md
   - GH and SSH Agent Setup: 2026-02-27-gh-and-ssh-agent.md
+  - GH Pages Long-term Playbook: 2026-02-27-gh-pages-long-term-blog-playbook.md
 
 markdown_extensions:
   - admonition
