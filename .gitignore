@@ -8,3 +8,6 @@
 # Local temp
 *.tmp
 *.log
+
+# MkDocs build output
+site/

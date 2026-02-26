@@ -1,0 +1,21 @@
+site_name: termux-notes
+site_description: Notes and practical learnings from tinkering in Termux on Android
+site_url: https://suimenqx.github.io/termux-notes/
+repo_url: https://github.com/suimenqx/termux-notes
+repo_name: suimenqx/termux-notes
+
+theme:
+  name: material
+  language: zh
+
+# Reuse existing notes as the docs source.
+docs_dir: notes
+
+nav:
+  - Home: index.md
+  - GH and SSH Agent Setup: 2026-02-27-gh-and-ssh-agent.md
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
