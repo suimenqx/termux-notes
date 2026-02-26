@@ -7,7 +7,7 @@
 - 在线博客：<https://suimenqx.github.io/termux-notes/>
 
 ## 最新笔记
-- [GH CLI and SSH Agent on Termux (2026-02-27)](2026-02-27-gh-and-ssh-agent.md)
+- [Termux 下配置 GH CLI 与 SSH Agent（2026-02-27）](2026-02-27-gh-and-ssh-agent.md)
 - [GH CLI + GitHub Pages: 长期博客实践总结（2026-02-27）](2026-02-27-gh-pages-long-term-blog-playbook.md)
 
 ## 阅读建议

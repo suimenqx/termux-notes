@@ -1,16 +1,16 @@
-# GH CLI and SSH Agent on Termux (2026-02-27)
+# Termux 下配置 GH CLI 与 SSH Agent（2026-02-27）
 
-## Context
-Set up GitHub CLI workflow on Android Termux and verify repository operations.
+## 背景
+目标是在 Android Termux 中打通 GitHub CLI 工作流，并验证仓库创建与 SSH 推送链路可用。
 
-## Goals
-- Install and verify `gh`
-- Re-authenticate GitHub account
-- Switch Git protocol to SSH
-- Validate SSH connectivity
-- Create and initialize a practical notes repository
+## 目标
+- 安装并验证 `gh`
+- 重新完成 GitHub 认证
+- 将 Git 协议切换到 SSH
+- 验证 SSH 连通性
+- 创建并初始化 `termux-notes` 仓库
 
-## Commands Run
+## 执行命令
 ```sh
 pkg install -y gh
 gh --version
@@ -23,27 +23,27 @@ ssh -T -o StrictHostKeyChecking=accept-new git@github.com
 gh repo create termux-notes --public --description "Notes and practical learnings from tinkering in Termux on Android" --clone
 ```
 
-## Key Results
-- `gh` available and working (`2.87.3` at setup time)
-- GitHub authentication refreshed successfully
-- Git operations protocol switched to `ssh`
-- SSH connectivity confirmed (`successfully authenticated`)
-- Repository created: `https://github.com/suimenqx/termux-notes`
+## 结果
+- `gh` 可用并工作正常（配置时为 `2.87.3`）
+- GitHub 账号认证刷新成功
+- Git 协议已切换为 `ssh`
+- SSH 握手成功（`successfully authenticated`）
+- 仓库创建完成：<https://github.com/suimenqx/termux-notes>
 
-## Local Layout Decision
-Repositories should live under:
+## 路径规范决策
+仓库统一放在：
 - `/data/data/com.termux/files/home/github`
 
-This avoids clutter under `$HOME` and keeps project paths consistent.
+这样可以避免 `$HOME` 根目录变乱，也便于长期维护。
 
-## Issue Encountered
-Git reported `dubious ownership` after moving repo into shared storage path.
+## 遇到的问题
+仓库迁移到共享存储路径后，Git 报错 `dubious ownership`。
 
-### Fix
+### 修复方式
 ```sh
 git config --global --add safe.directory /storage/emulated/0/xin/code/github/termux-notes
 ```
 
-## Follow-up
-- Add reusable setup script under `scripts/`.
-- Add notes for package maintenance and backup strategy.
+## 后续计划
+- 在 `scripts/` 下增加可复用初始化脚本
+- 补充包维护和备份策略笔记
