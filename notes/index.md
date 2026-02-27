@@ -7,6 +7,7 @@
 - 在线博客：<https://suimenqx.github.io/termux-notes/>
 
 ## 最新笔记
+- [Termux 下载源优化方案与使用指南（2026-02-28）](2026-02-28-termux-mirror-optimizer-guide.md)
 - [Termux 下配置 GH CLI 与 SSH Agent（2026-02-27）](2026-02-27-gh-and-ssh-agent.md)
 - [GH CLI + GitHub Pages: 长期博客实践总结（2026-02-27）](2026-02-27-gh-pages-long-term-blog-playbook.md)
 
