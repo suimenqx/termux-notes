@@ -8,41 +8,38 @@ theme:
   name: material
   language: zh
   font:
-    text: Noto Sans SC
+    # 正文用思源宋体，阅读舒适；代码用等宽
+    text: Noto Serif SC
     code: JetBrains Mono
   palette:
-    # 终端暗色 —— 默认主题
-    - scheme: slate
-      primary: teal
-      accent: lime
+    - scheme: default
+      primary: brown
+      accent: deep-orange
       toggle:
-        icon: material/console
-        name: 终端暗色
+        icon: material/book-open-page-variant
+        name: 阅读模式
   features:
     - navigation.instant
     - navigation.tracking
     - navigation.top
     - navigation.tabs
-    - navigation.indexes
     - toc.follow
     - content.code.copy
     - content.code.annotate
     - search.suggest
     - search.highlight
-    - search.share
 
-# Reuse existing notes as the docs source.
 docs_dir: notes
 extra_css:
   - stylesheets/extra.css
 
 nav:
-  - Home: index.md
+  - 首页: index.md
   - Termux 编码会话管理器 agent-tmux: 2026-07-13-agent-tmux-coding-session-manager.md
   - Termux Extra Keys 配置完全指南: 2026-07-13-termux-extra-keys-config.md
   - Termux 下载源优化方案与使用指南: 2026-02-28-termux-mirror-optimizer-guide.md
   - Termux 下 GH 与 SSH Agent 配置: 2026-02-27-gh-and-ssh-agent.md
-  - GH Pages Long-term Playbook: 2026-02-27-gh-pages-long-term-blog-playbook.md
+  - GH Pages Long-term Blog Playbook: 2026-02-27-gh-pages-long-term-blog-playbook.md
 
 markdown_extensions:
   - admonition
@@ -57,12 +54,7 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.inlinehilite
   - pymdownx.keys
-  - pymdownx.caret
-  - pymdownx.mark
-  - pymdownx.tilde
   - pymdownx.details
-  - pymdownx.tasklist:
-      custom_checkbox: true
   - toc:
       permalink: true
-      toc_depth: 4
+      toc_depth: 3
