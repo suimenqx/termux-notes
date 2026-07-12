@@ -7,6 +7,7 @@
 - 在线博客：<https://suimenqx.github.io/termux-notes/>
 
 ## 最新笔记
+- [Termux 编码会话管理器 agent-tmux（2026-07-13）](2026-07-13-agent-tmux-coding-session-manager.md)
 - [Termux Extra Keys 配置完全指南（2026-07-13）](2026-07-13-termux-extra-keys-config.md)
 - [Termux 下载源优化方案与使用指南（2026-02-28）](2026-02-28-termux-mirror-optimizer-guide.md)
 - [Termux 下配置 GH CLI 与 SSH Agent（2026-02-27）](2026-02-27-gh-and-ssh-agent.md)

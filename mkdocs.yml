@@ -30,6 +30,7 @@ extra_css:
 
 nav:
   - Home: index.md
+  - Termux 编码会话管理器 agent-tmux: 2026-07-13-agent-tmux-coding-session-manager.md
   - Termux Extra Keys 配置完全指南: 2026-07-13-termux-extra-keys-config.md
   - Termux 下载源优化方案与使用指南: 2026-02-28-termux-mirror-optimizer-guide.md
   - Termux 下 GH 与 SSH Agent 配置: 2026-02-27-gh-and-ssh-agent.md
