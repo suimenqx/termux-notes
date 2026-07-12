@@ -111,6 +111,24 @@ agent-tmux
 | 切换窗格 | `Ctrl+B 方向键` |
 | 脱离会话（后台） | `Ctrl+B d` |
 
+## tmux extended-keys 警告修复
+
+如果在 Termux 中看到以下警告：
+
+```
+Warning: tmux extended-keys is off. Modified Enter keys may not work.
+```
+
+在 `~/.tmux.conf` 中添加一行即可消除：
+
+```
+set -g extended-keys on
+```
+
+然后执行 `tmux source-file ~/.tmux.conf` 或重启 tmux 使其生效。
+
+---
+
 ## 设计哲学
 
 1. **极简** — 仅 20 行，无依赖，纯 POSIX sh
