@@ -11,17 +11,25 @@ theme:
     text: Noto Sans SC
     code: JetBrains Mono
   palette:
-    - scheme: default
+    # 终端暗色 —— 默认主题
+    - scheme: slate
       primary: teal
-      accent: blue
+      accent: lime
+      toggle:
+        icon: material/console
+        name: 终端暗色
   features:
     - navigation.instant
     - navigation.tracking
     - navigation.top
+    - navigation.tabs
+    - navigation.indexes
     - toc.follow
     - content.code.copy
+    - content.code.annotate
     - search.suggest
     - search.highlight
+    - search.share
 
 # Reuse existing notes as the docs source.
 docs_dir: notes
@@ -38,8 +46,23 @@ nav:
 
 markdown_extensions:
   - admonition
-  - pymdownx.highlight
-  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.details
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - toc:
       permalink: true
+      toc_depth: 4

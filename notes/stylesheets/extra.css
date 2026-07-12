@@ -1,46 +1,444 @@
+/* ============================================================
+   TERMINAL AESTHETIC — termux-notes
+   Inspired by: Tokyo Night + classic green-screen terminals
+   ============================================================ */
+
+/* ---------- CSS Custom Properties (overrides) ---------- */
 :root {
   --md-text-font: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --md-code-font: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  --md-code-font: "JetBrains Mono", "SFMono-Regular", Consolas, "Cascadia Code", monospace;
+
+  /* Tokyo Night palette */
+  --terminal-bg:        #0d1117;
+  --terminal-surface:   #161b22;
+  --terminal-overlay:   #1c2128;
+  --terminal-border:    #30363d;
+  --terminal-text:      #e6edf3;
+  --terminal-muted:     #8b949e;
+  --terminal-green:     #3fb950;
+  --terminal-blue:      #58a6ff;
+  --terminal-cyan:      #39d2c0;
+  --terminal-orange:    #d2991d;
+  --terminal-red:       #f85149;
+  --terminal-purple:    #a371f7;
+  --terminal-cursor:    #58a6ff;
+
+  /* Override MkDocs primary on dark bg */
+  --md-primary-fg-color:               #14b8a6;  /* teal-500 */
+  --md-primary-fg-color--light:        #5eead4;
+  --md-primary-fg-color--dark:         #0f766e;
+  --md-accent-fg-color:                var(--terminal-green);
+  --md-default-bg-color:               var(--terminal-bg);
+  --md-default-fg-color:               var(--terminal-text);
+  --md-default-fg-color--light:        var(--terminal-muted);
+  --md-code-bg-color:                  var(--terminal-surface);
+  --md-code-fg-color:                  var(--terminal-text);
+  --md-typeset-a-color:                var(--terminal-cyan);
+  --md-footer-bg-color:                var(--terminal-surface);
+  --md-footer-bg-color--dark:          var(--terminal-bg);
 }
 
+/* ---------- Global ---------- */
+body {
+  background-color: var(--terminal-bg);
+}
+
+/* Subtle scanline overlay (optional, comment out if too much) */
+/* body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+} */
+
+/* ---------- Typography ---------- */
+.md-typeset {
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: var(--terminal-text);
+}
+
+/* Headings — terminal prompt style */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--terminal-text);
+  border: none;
+}
+
+.md-typeset h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed var(--terminal-border);
+  position: relative;
+}
+.md-typeset h1::before {
+  content: "❯ ";
+  color: var(--terminal-green);
+  font-family: var(--md-code-font);
+  font-weight: 400;
+}
+
+.md-typeset h2 {
+  font-size: 1.35rem;
+  margin-top: 2rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--terminal-border);
+}
+.md-typeset h2::before {
+  content: "❯❯ ";
+  color: var(--terminal-cyan);
+  font-family: var(--md-code-font);
+  font-weight: 400;
+  font-size: 0.85em;
+}
+
+.md-typeset h3 {
+  font-size: 1.15rem;
+  margin-top: 1.5rem;
+  color: var(--terminal-blue);
+}
+.md-typeset h3::before {
+  content: "❯❯❯ ";
+  color: var(--terminal-muted);
+  font-family: var(--md-code-font);
+  font-weight: 300;
+  font-size: 0.8em;
+}
+
+.md-typeset h4 {
+  font-size: 1rem;
+  color: var(--terminal-muted);
+}
+
+/* ---------- Links ---------- */
+.md-typeset a {
+  color: var(--terminal-cyan);
+  text-decoration: none;
+  background: linear-gradient(to right, var(--terminal-cyan), var(--terminal-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: opacity 0.15s;
+}
+.md-typeset a:hover {
+  opacity: 0.8;
+}
+.md-typeset a:visited {
+  opacity: 0.6;
+}
+
+.md-content a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Code Blocks — Terminal Window ---------- */
+.md-typeset pre > code {
+  border-radius: 8px;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  border: 1px solid var(--terminal-border);
+  background-color: var(--terminal-surface) !important;
+}
+
+.md-typeset pre {
+  position: relative;
+  padding-top: 2em;
+  border-radius: 8px;
+  border: 1px solid var(--terminal-border);
+  background: var(--terminal-surface);
+}
+
+/* Fake title-bar dots */
+.md-typeset pre::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--terminal-red);
+  box-shadow:
+    20px 0 0 var(--terminal-orange),
+    40px 0 0 var(--terminal-green);
+  z-index: 2;
+}
+
+/* Title-bar background */
+.md-typeset pre::after {
+  content: attr(data-language) " ~ zsh";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: var(--terminal-overlay);
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid var(--terminal-border);
+  color: var(--terminal-muted);
+  font-family: var(--md-code-font);
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* ---------- Inline Code ---------- */
+.md-typeset code:not(pre code) {
+  background: var(--terminal-surface);
+  border: 1px solid var(--terminal-border);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  font-size: 0.88em;
+  color: var(--terminal-green);
+}
+
+/* ---------- Navigation — File-tree style ---------- */
+.md-nav__link {
+  transition: color 0.1s;
+}
+.md-nav__link:hover {
+  color: var(--terminal-green) !important;
+}
+.md-nav__link--active {
+  color: var(--terminal-cyan) !important;
+  font-weight: 600;
+}
+
+/* Active nav item with arrow */
+.md-nav__item--active > .md-nav__link::before {
+  content: "❯ ";
+  color: var(--terminal-green);
+  font-family: var(--md-code-font);
+}
+
+/* Nested nav folders */
+.md-nav__item--nested .md-nav__toggle:checked ~ .md-nav__link::before {
+  content: "▼ ";
+  font-size: 0.6em;
+  color: var(--terminal-muted);
+}
+.md-nav__item--nested .md-nav__link::before {
+  content: "▶ ";
+  font-size: 0.6em;
+  color: var(--terminal-muted);
+}
+
+/* ---------- Admonitions — Terminal output ---------- */
+.md-typeset .admonition {
+  border: 1px solid var(--terminal-border);
+  border-left-width: 4px;
+  border-radius: 6px;
+  background: var(--terminal-surface);
+  font-size: 0.85rem;
+}
+
+.md-typeset .admonition.note {
+  border-left-color: var(--terminal-blue);
+}
+.md-typeset .admonition.note .admonition-title {
+  background: rgba(88, 166, 255, 0.1);
+  color: var(--terminal-blue);
+}
+
+.md-typeset .admonition.warning {
+  border-left-color: var(--terminal-orange);
+}
+.md-typeset .admonition.warning .admonition-title {
+  background: rgba(210, 153, 29, 0.1);
+  color: var(--terminal-orange);
+}
+
+.md-typeset .admonition.tip {
+  border-left-color: var(--terminal-green);
+}
+.md-typeset .admonition.tip .admonition-title {
+  background: rgba(63, 185, 80, 0.1);
+  color: var(--terminal-green);
+}
+
+.md-typeset .admonition.danger,
+.md-typeset .admonition.failure {
+  border-left-color: var(--terminal-red);
+}
+.md-typeset .admonition.danger .admonition-title,
+.md-typeset .admonition.failure .admonition-title {
+  background: rgba(248, 81, 73, 0.1);
+  color: var(--terminal-red);
+}
+
+/* Admonition title prefix */
+.md-typeset .admonition.note > .admonition-title::before {
+  content: "info ❯ ";
+}
+.md-typeset .admonition.warning > .admonition-title::before {
+  content: "warn ❯ ";
+}
+.md-typeset .admonition.tip > .admonition-title::before {
+  content: "hint ❯ ";
+}
+.md-typeset .admonition.danger > .admonition-title::before {
+  content: "err  ❯ ";
+  color: var(--terminal-red);
+}
+.md-typeset .admonition.failure > .admonition-title::before {
+  content: "fail ❯ ";
+  color: var(--terminal-red);
+}
+
+/* ---------- Blockquotes — Terminal prompt ---------- */
+.md-typeset blockquote {
+  border-left: 4px solid var(--terminal-green);
+  background: var(--terminal-surface);
+  border-radius: 0 6px 6px 0;
+  padding: 0.8em 1em;
+  color: var(--terminal-muted);
+  font-style: italic;
+}
+.md-typeset blockquote::before {
+  content: "> ";
+  color: var(--terminal-green);
+  font-weight: bold;
+  font-family: var(--md-code-font);
+}
+
+/* ---------- Tables — Retro grid ---------- */
+.md-typeset table:not([class]) {
+  border-collapse: collapse;
+  border: 1px solid var(--terminal-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--terminal-overlay);
+  color: var(--terminal-cyan);
+  border-bottom: 2px solid var(--terminal-border);
+  font-family: var(--md-code-font);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.md-typeset table:not([class]) td {
+  border-bottom: 1px solid var(--terminal-border);
+}
+
+.md-typeset table:not([class]) tr:hover td {
+  background: rgba(63, 185, 80, 0.04);
+}
+
+/* ---------- Scrollbar — thin dark ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--terminal-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--terminal-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-muted);
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background: rgba(63, 185, 80, 0.3);
+  color: var(--terminal-text);
+}
+
+/* ---------- Header & Top bar ---------- */
+.md-header {
+  background: var(--terminal-surface);
+  border-bottom: 1px solid var(--terminal-border);
+  box-shadow: none;
+}
+
+.md-tabs {
+  background: var(--terminal-bg);
+  border-bottom: 1px solid var(--terminal-border);
+}
+
+/* ---------- Footer ---------- */
+.md-footer {
+  border-top: 1px solid var(--terminal-border);
+}
+
+/* ---------- Search ---------- */
+.md-search__input {
+  background: var(--terminal-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: 6px;
+}
+.md-search__input::placeholder {
+  color: var(--terminal-muted);
+}
+
+.md-search-result__article {
+  border-bottom: 1px solid var(--terminal-border);
+}
+
+/* ---------- Keyboard keys ---------- */
+.md-typeset kbd {
+  background: var(--terminal-surface);
+  border: 1px solid var(--terminal-border);
+  border-bottom-width: 3px;
+  border-radius: 4px;
+  box-shadow: none;
+  color: var(--terminal-cyan);
+  font-family: var(--md-code-font);
+  font-size: 0.8em;
+  padding: 0.1em 0.4em;
+}
+
+/* ---------- Content width ---------- */
 .md-content__inner {
   max-width: 860px;
 }
 
-.md-typeset {
-  font-size: 0.9rem;
-  line-height: 1.85;
+/* ---------- Divider ---------- */
+.md-typeset hr {
+  border: none;
+  border-top: 1px dashed var(--terminal-border);
+  margin: 2rem 0;
 }
 
-.md-typeset h1 {
-  margin-bottom: 0.8rem;
-}
-
-.md-typeset h2 {
-  margin-top: 1.8rem;
-}
-
-.md-typeset ul li,
-.md-typeset ol li {
-  margin-bottom: 0.45rem;
-}
-
-.md-typeset pre > code {
-  border-radius: 10px;
-}
-
+/* ---------- Mobile responsiveness ---------- */
 @media screen and (max-width: 76.1875em) {
   .md-typeset {
     font-size: 0.98rem;
     line-height: 1.95;
   }
-
   .md-nav__link {
     padding-top: 0.42rem;
     padding-bottom: 0.42rem;
   }
-
   .md-content__inner {
     padding-top: 0.8rem;
+  }
+  .md-typeset pre::before,
+  .md-typeset pre::after {
+    display: none; /* title bar too cramped on mobile */
+  }
+  .md-typeset pre {
+    padding-top: 0.8em;
   }
 }
