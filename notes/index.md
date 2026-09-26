@@ -7,6 +7,7 @@
 - 在线博客：<https://suimenqx.github.io/termux-notes/>
 
 ## 最新笔记
+- [Termux 中验证网页前端的真实浏览器效果（2026-09-26）](2026-09-26-termux-real-browser-validation.md)
 - [Termux 编码会话管理器 agent-tmux（2026-07-13）](2026-07-13-agent-tmux-coding-session-manager.md)
 - [Termux Extra Keys 配置完全指南（2026-07-13）](2026-07-13-termux-extra-keys-config.md)
 - [Termux 下载源优化方案与使用指南（2026-02-28）](2026-02-28-termux-mirror-optimizer-guide.md)

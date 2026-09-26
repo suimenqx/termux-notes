@@ -2,6 +2,10 @@
 
 Notes and practical learnings from tinkering in Termux on Android.
 
+## Web frontend validation
+
+For projects developed in Termux, follow the [real-browser validation guide](notes/2026-09-26-termux-real-browser-validation.md). It covers Firefox + Xvfb + geckodriver, `file://` and local HTTP pages, WebDriver screenshots and workflow assertions, downloads, cleanup, and the limits of local Firefox coverage. The phone can be the development host even when the product targets desktop browsers.
+
 ## Structure
 - `notes/`: dated notes and troubleshooting logs
 - `scripts/`: helper scripts for setup and maintenance
