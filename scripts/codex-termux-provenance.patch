@@ -1,0 +1,40 @@
+--- a/bin/codex.js
++++ b/bin/codex.js
+@@ -28,4 +28,8 @@
+-const env = { ...process.env, CODEX_MANAGED_BY_NPM: '1' };
++const env = {
++  ...process.env,
++  CODEX_MANAGED_BY_NPM: '1',
++  CODEX_MANAGED_PACKAGE_ROOT: dirname(__dirname)
++};
+ const binDir = __dirname;
+ // Hidden arg0 aliases must target the native ELF directly. Pointing them at
+ // the shell wrapper would lose the special argv[0] when it execs codex.bin.
+--- a/bin/codex-exec.js
++++ b/bin/codex-exec.js
+@@ -34,4 +34,8 @@
+-const env = { ...process.env, CODEX_MANAGED_BY_NPM: '1' };
++const env = {
++  ...process.env,
++  CODEX_MANAGED_BY_NPM: '1',
++  CODEX_MANAGED_PACKAGE_ROOT: dirname(__dirname)
++};
+ const binDir = __dirname;
+ // Hidden arg0 aliases must target the native ELF directly. Pointing them at
+ // the shell wrapper would lose the special argv[0] when it execs codex.bin.
+--- a/bin/codex
++++ b/bin/codex
+@@ -34,4 +34,5 @@
+ export CODEX_MANAGED_BY_NPM=1
++export CODEX_MANAGED_PACKAGE_ROOT="$(CDPATH='' cd -- "$SCRIPT_DIR/.." && pwd)"
+ export CODEX_SELF_EXE="$SCRIPT_DIR/codex.bin"
+ LD_LIBRARY_PATH="$(sanitize_ld_library_path)"
+ export LD_LIBRARY_PATH
+--- a/bin/codex-exec
++++ b/bin/codex-exec
+@@ -34,4 +34,5 @@
+ export CODEX_MANAGED_BY_NPM=1
++export CODEX_MANAGED_PACKAGE_ROOT="$(CDPATH='' cd -- "$SCRIPT_DIR/.." && pwd)"
+ export CODEX_SELF_EXE="$SCRIPT_DIR/codex.bin"
+ LD_LIBRARY_PATH="$(sanitize_ld_library_path)"
+ export LD_LIBRARY_PATH
