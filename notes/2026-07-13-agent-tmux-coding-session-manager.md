@@ -113,19 +113,38 @@ agent-tmux
 
 ## tmux extended-keys 警告修复
 
-如果在 Termux 中看到以下警告：
+### 警告：pi 提示 extended-keys-format is xterm
+
+在 tmux 内运行 pi 时可能看到：
 
 ```
-Warning: tmux extended-keys is off. Modified Enter keys may not work.
+Warning: tmux extended-keys-format is xterm. Pi may not work properly.
 ```
 
-在 `~/.tmux.conf` 中添加一行即可消除：
+原因是 tmux 默认用 xterm 风格的扩展键编码，而 pi 需要 CSI u 格式
+才能正确区分 `Enter`、`Ctrl+Enter`、`Shift+Enter` 等修饰键组合。
+
+**两条配置缺一不可**，在 `~/.tmux.conf` 中：
 
 ```
 set -g extended-keys on
+set -g extended-keys-format csi-u
 ```
 
-然后执行 `tmux source-file ~/.tmux.conf` 或重启 tmux 使其生效。
+- `extended-keys on` — 开启扩展键协议支持
+- `extended-keys-format csi-u` — 指定用 CSI u 格式编码修饰键
+
+> **实测**：Termux 当前源提供 tmux 3.7b，官方文档称
+> `extended-keys-format` 是 3.8+ 选项，但实际测试中 Termux 的 3.7b
+> **支持**该选项，两条配置均可生效。
+
+### 生效
+
+```bash
+tmux source-file ~/.tmux.conf
+```
+
+或在 tmux 内按 `C-b r`（如果绑定了 reload）。
 
 ---
 
