@@ -7,6 +7,7 @@
 - 在线博客：<https://suimenqx.github.io/termux-notes/>
 
 ## 最新笔记
+- [Termux 手机端 Vibe Coding 配置：虚拟键盘、会话切换与 Codex 标题修复（2026-10-29）](2026-10-29-termux-vibe-coding-keyboard-and-codex-title.md)
 - [Termux 中更新 Codex 并验证真实工作流（2026-10-24）](2026-10-24-codex-termux-update-and-health-check.md)
 - [Termux 中验证网页前端的真实浏览器效果（2026-09-26）](2026-09-26-termux-real-browser-validation.md)
 - [Termux 编码会话管理器 agent-tmux（2026-07-13）](2026-07-13-agent-tmux-coding-session-manager.md)
